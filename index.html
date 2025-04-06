@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>दस्तक अभियान अप्रैल 2025 - डेटा संग्रह</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        .form-header {
+            background-color: #3498db;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .form-section {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        
+        .section-title {
+            background-color: #2c3e50;
+            color: white;
+            padding: 8px 15px;
+            margin: -15px -15px 15px -15px;
+            border-radius: 4px 4px 0 0;
+            font-weight: bold;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 200px;
+            margin: 5px 10px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            margin: 5px;
+        }
+        
+        .btn-submit {
+            background-color: #27ae60;
+            color: white;
+        }
+        
+        .btn-submit:hover {
+            background-color: #2ecc71;
+        }
+        
+        .btn-view {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .btn-view:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-edit {
+            background-color: #f39c12;
+            color: white;
+        }
+        
+        .btn-edit:hover {
+            background-color: #e67e22;
+        }
+        
+        .btn-delete {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        .btn-delete:hover {
+            background-color: #c0392b;
+        }
+        
+        .btn-download {
+            background-color: #9b59b6;
+            color: white;
+        }
+        
+        .btn-download:hover {
+            background-color: #8e44ad;
+        }
+        
+        .btn-login {
+            background-color: #2ecc71;
+            color: white;
+        }
+        
+        .btn-login:hover {
+            background-color: #27ae60;
+        }
+        
+        .btn-logout {
+            background-color: #34495e;
+            color: white;
+        }
+        
+        .btn-logout:hover {
+            background-color: #2c3e50;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        /* Login Page Styles */
+        #loginPage {
+            max-width: 500px;
+            margin: 50px auto;
+        }
+        
+        .login-form {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Data View Page Styles */
+        #dataViewPage {
+            display: none;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        
+        .data-table th, .data-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        .data-table th {
+            background-color: #3498db;
+            color: white;
+            position: sticky;
+            top: 0;
+        }
+        
+        .data-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .data-table tr:hover {
+            background-color: #e6f7ff;
+        }
+        
+        .search-container {
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .search-box {
+            flex: 1;
+            min-width: 200px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .action-btns {
+            display: flex;
+            gap: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .form-group {
+                min-width: 100%;
+                margin: 5px 0;
+            }
+            
+            .data-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .action-btns {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page (Only for Data View) -->
+    <div class="container" id="loginPage" style="display: none;">
+        <h1>दस्तक अभियान डेटा देखें</h1>
+        
+        <div class="form-header">
+            <h2>कृपया लॉगिन करें</h2>
+            <p>केवल अधिकृत उपयोगकर्ता ही डेटा देख सकते हैं</p>
+        </div>
+        
+        <div class="login-form">
+            <div class="form-group">
+                <label for="viewUsername">उपयोगकर्ता नाम</label>
+                <input type="text" id="viewUsername" name="viewUsername" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="viewPassword">पासवर्ड</label>
+                <input type="password" id="viewPassword" name="viewPassword" required>
+            </div>
+            
+            <div class="button-container">
+                <button type="button" id="viewLoginBtn" class="btn btn-login">लॉगिन</button>
+                <button type="button" id="cancelLoginBtn" class="btn btn-logout">रद्द करें</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Entry Form Page (No login required) -->
+    <div class="container" id="entryFormPage">
+        <h1>दस्तक अभियान अप्रैल 2025</h1>
+        
+        <div class="form-header">
+            <h2>डेटा एंट्री फॉर्म - जनपद जौनपुर</h2>
+            <p>दिनांक: <span id="currentDate"></span></p>
+        </div>
+        
+        <form id="dastakForm">
+            <!-- Form content remains the same as previous version -->
+              <!-- Basic Information Section -->
+            <div class="form-section">
+                <div class="section-title">मूल जानकारी</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="sn">क्रम संख्या (SN)</label>
+                        <input type="number" id="sn" name="sn" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="chcName">सीएचसी/पीएचसी का नाम (Name of CHC/Phc)</label>
+                        <select id="chcName" name="chcName" required>
+                            <option value="">-- चुनें --</option>
+                            <option value="Badlapur">Badlapur</option>
+                            <option value="Barsathi">Barsathi</option>
+                            <option value="Baxa">Baxa</option>
+                            <option value="Dharmapur">Dharmapur</option>
+                            <option value="Dobhi">Dobhi</option>
+                            <option value="Jalalpur">Jalalpur</option>
+                            <option value="Karanjakala">Karanjakala</option>
+                            <option value="Kerakat">Kerakat</option>
+                            <option value="Khutahan">Khutahan</option>
+                            <option value="Machhalishahar">Machhalishahar</option>
+                            <option value="Madiyahu">Madiyahu</option>
+                            <option value="Mahrajganj">Mahrajganj</option>
+                            <option value="Muftiganj">Muftiganj</option>
+                            <option value="Mungara badshahpur">Mungara badshahpur</option>
+                            <option value="Ramnagar">Ramnagar</option>
+                            <option value="Rampur">Rampur</option>
+                            <option value="Shahganj">Shahganj</option>
+                            <option value="Sikrara">Sikrara</option>
+                            <option value="Sirkoni">Sirkoni</option>
+                            <option value="Sondhi">Sondhi</option>
+                            <option value="Suithakala">Suithakala</option>
+                            <option value="Sujanganj">Sujanganj</option>
+                            <option value="UPHC Matapur">UPHC Matapur</option>
+                            <option value="UPHC Katghara">UPHC Katghara</option>
+                            <option value="UPHC Rasulabad">UPHC Rasulabad</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="remarks">टिप्पणी (Remarks)</label>
+                    <textarea id="remarks" name="remarks"></textarea>
+                </div>
+            </div>
+            
+            <!-- Campaign Activities Section -->
+            <div class="form-section">
+                <div class="section-title">अभियानों के लॉच हेतु गतिविधियाँ</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="districtProgram">दस्तक/संचारी अभियान के जनपद स्तरीय लोच हेतु कार्यक्रम सम्पादित (हाँ/नहीं)</label>
+                        <select id="districtProgram" name="districtProgram">
+                            <option value="">-- चुनें --</option>
+                            <option value="हाँ">हाँ</option>
+                            <option value="नहीं">नहीं</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="blockPrograms">दस्तक/संचारी अभियान के लॉच हेतु ब्लाक स्तर पर आयोजित कार्यक्रमों की कुल संख्या</label>
+                        <input type="number" id="blockPrograms" name="blockPrograms" min="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="villagePrograms">दस्तक/संचारी अभियान के लॉच हेतु ग्राम स्तर पर आयोजित कार्यक्रमों की कुल संख्या</label>
+                        <input type="number" id="villagePrograms" name="villagePrograms" min="0">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ASHA Training Section -->
+            <div class="form-section">
+                <div class="section-title">प्रशिक्षित आशा</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="ashaTarget">प्रशिक्षित आशा की संख्या (लक्ष्य)</label>
+                        <input type="number" id="ashaTarget" name="ashaTarget" min="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ashaAchieved">प्रशिक्षित आशा की संख्या (उपलब्धि)</label>
+                        <input type="number" id="ashaAchieved" name="ashaAchieved" min="0">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- VHSNC Meetings Section -->
+            <div class="form-section">
+                <div class="section-title">VHSNC बैठकें</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="vhsncTarget">VHSNC बैठकों की संख्या (लक्ष्य)</label>
+                        <input type="number" id="vhsncTarget" name="vhsncTarget" min="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="vhsncAchieved">VHSNC बैठकों की संख्या (उपलब्धि)</label>
+                        <input type="number" id="vhsncAchieved" name="vhsncAchieved" min="0">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ASHA Home Visits Section -->
+            <div class="form-section">
+                <div class="section-title">आशा द्वारा गृह भ्रमण</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="homeVisitTarget">आशा द्वारा कुल गृह भ्रमण की संख्या (लक्ष्य)</label>
+                        <input type="number" id="homeVisitTarget" name="homeVisitTarget" min="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="homeVisitAchieved">आशा द्वारा कुल गृह भ्रमण की संख्या (उपलब्धि)</label>
+                        <input type="number" id="homeVisitAchieved" name="homeVisitAchieved" min="0">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Maternal Meetings Section -->
+            <div class="form-section">
+                <div class="section-title">मात्री बैठक</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="maternalMeetingTarget">मात्री बैठक आयोजित कुल संख्या (लक्ष्य)</label>
+                        <input type="number" id="maternalMeetingTarget" name="maternalMeetingTarget" min="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="maternalMeetingAchieved">मात्री बैठक आयोजित कुल संख्या (उपलब्धि)</label>
+                        <input type="number" id="maternalMeetingAchieved" name="maternalMeetingAchieved" min="0">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- VHND Days Section -->
+            <div class="form-section">
+                <div class="section-title">VHND दिवस</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="vhndTarget">AES पर चर्चा के लिए VHND दिवस आयोजन की संख्या (लक्ष्य)</label>
+                        <input type="number" id="vhndTarget" name="vhndTarget" min="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="vhndAchieved">AES पर चर्चा के लिए VHND दिवस आयोजन की संख्या (उपलब्धि)</label>
+                        <input type="number" id="vhndAchieved" name="vhndAchieved" min="0">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chlorination Demo Section -->
+            <div class="form-section">
+                <div class="section-title">क्लोरिनेशन डेमो</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="chlorinationTarget">क्लोरिनेशन डेमो स्थल कुल संख्या (लक्ष्य)</label>
+                        <input type="number" id="chlorinationTarget" name="chlorinationTarget" min="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="chlorinationAchieved">क्लोरिनेशन डेमो स्थल कुल संख्या (उपलब्धि)</label>
+                        <input type="number" id="chlorinationAchieved" name="chlorinationAchieved" min="0">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SHG Meetings Section -->
+            <div class="form-section">
+                <div class="section-title">स्वय सहायता समूहों की बैठक</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="shgMeetingTarget">स्वय सहायता समूहों की बैठक की कुल संख्या (लक्ष्य)</label>
+                        <input type="number" id="shgMeetingTarget" name="shgMeetingTarget" min="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="shgMeetingAchieved">स्वय सहायता समूहों की बैठक की कुल संख्या (उपलब्धि)</label>
+                        <input type="number" id="shgMeetingAchieved" name="shgMeetingAchieved" min="0">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ABHA Section -->
+            <div class="form-section">
+                <div class="section-title">ABHA</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="abhaCreated">कुल बनाई गई ABHA</label>
+                        <input type="number" id="abhaCreated" name="abhaCreated" min="0">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Fever Tracking Section -->
+            <div class="form-section">
+                <div class="section-title">फीवर ट्रैकिंग</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="feverPatients">कुल चिन्हित बुख़ार के रोगियों की संख्या (ई-कवच में सूचिबद्ध करें)</label>
+                        <input type="number" id="feverPatients" name="feverPatients" min="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="malariaTests">मलेरिया रोग हेतु स्लाइड आर डी टी से जांच किए गए बुखार रोगियों की संख्या</label>
+                        <input type="number" id="malariaTests" name="malariaTests" min="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="malariaPositive">मलेरिया धनात्मक पाए गए बुख़ार रोगियों की संख्या</label>
+                        <input type="number" id="malariaPositive" name="malariaPositive" min="0">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- COVID-19 Section -->
+            <div class="form-section">
+                <div class="section-title">कोविड-19 सम्बंधित</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="coughPatients">खाँसी जुखाम के लक्षणों से ग्रसित रोगियों की संख्या (ई-कवच में सूचिबद्ध करें)</label>
+                        <input type="number" id="coughPatients" name="coughPatients" min="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="covidTests">कोविड जाँच कराये गए खाँसी जुखाम के लक्षणों से ग्रसित रोगियों की संख्या</label>
+                        <input type="number" id="covidTests" name="covidTests" min="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="covidPositive">कोविड जाँच कराये गए रोगियों में से कोविड धनात्मक रोगियों की संख्या</label>
+                        <input type="number" id="covidPositive" name="covidPositive" min="0">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tuberculosis Section -->
+            <div class="form-section">
+                <div class="section-title">क्षय रोग</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tbSymptoms">चिन्हित क्षय रोग के लक्षण युक्त व्यक्तियों की संख्या (ई-कवच में सूचिबद्ध करें)</label>
+                        <input type="number" id="tbSymptoms" name="tbSymptoms" min="0">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Leprosy Section -->
+            <div class="form-section">
+                <div class="section-title">कुष्ठ रोग</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="leprosySymptoms">घर में पाए गए कुष्ठ रोग के लक्षण युक्त (त्वचा पर सुन्न दाग/धब्बे अथवा हाथ की हथेली और पैर के तलवे में सुन्नपन या झनझनाहट)व्यक्तियों की संख्या (ई-कवच में सूचिबद्ध करें)</label>
+                        <input type="number" id="leprosySymptoms" name="leprosySymptoms" min="0">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Filariasis Section -->
+            <div class="form-section">
+                <div class="section-title">फाइलेरिया</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="filariasisSymptoms">घर में पाए गए फाइलेरिया के लक्षण युक्त (शरीर के किसी अंग में लंबे समय से सूजन, शरीर के किसी भाग में त्वचा का मोटा होना, हाइड्रोसील)व्यक्तियों की संख्या (ई-कवच में सूचिबद्ध करें)</label>
+                        <input type="number" id="filariasisSymptoms" name="filariasisSymptoms" min="0">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Kala-azar Section -->
+            <div class="form-section">
+                <div class="section-title">कालाज़ार</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="kalaazarSymptoms">चिन्न्हित कालाज़ार रोग के लक्षण युक्त व्यक्तियों की संख्या (ई-कवच में सूचिबद्ध करें)</label>
+                        <input type="number" id="kalaazarSymptoms" name="kalaazarSymptoms" min="0">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Malnutrition Section -->
+            <div class="form-section">
+                <div class="section-title">कुपोषण</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="malnourishedChildren">चिन्हित कुपोषित बच्चों की संख्या</label>
+                        <input type="number" id="malnourishedChildren" name="malnourishedChildren" min="0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="referredChildren">सम्पूर्ण जनपद में उपचार हेतु संदर्भित कुपोषित बच्चों की संख्या</label>
+                        <input type="number" id="referredChildren" name="referredChildren" min="0">
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- ... (All form sections from previous version) ... -->
+            
+            <div class="button-container">
+                <button type="submit" class="btn btn-submit">डेटा सबमिट करें</button>
+                <button type="button" id="viewDataBtn" class="btn btn-view">संग्रहित डेटा देखें</button>
+            </div>
+        </form>
+    </div>
+    
+    <!-- Data View Page (Requires login) -->
+    <div class="container" id="dataViewPage" style="display: none;">
+        <h1>दस्तक अभियान डेटा संग्रह</h1>
+        
+        <div class="form-header">
+            <h2>संग्रहित डेटा - जनपद जौनपुर</h2>
+            <p>दिनांक: <span id="viewDate"></span></p>
+            <p>उपयोगकर्ता: <span id="viewUser"></span></p>
+        </div>
+        
+        <div class="button-container">
+            <button id="backToFormBtn" class="btn btn-view">वापस फॉर्म पर जाएं</button>
+            <button id="downloadExcelBtn" class="btn btn-download">एक्सेल डाउनलोड करें</button>
+            <button id="logoutBtn" class="btn btn-logout">लॉगआउट</button>
+        </div>
+        
+        <div class="search-container">
+            <input type="text" id="searchInput" class="search-box" placeholder="खोजें...">
+            <input type="date" id="dateFilter" class="search-box">
+            <select id="chcFilter" class="search-box">
+                <option value="">-- चुनें --</option>
+                <option value="Badlapur">Badlapur</option>
+                <option value="Barsathi">Barsathi</option>
+                <option value="Baxa">Baxa</option>
+                <option value="Dharmapur">Dharmapur</option>
+                <option value="Dobhi">Dobhi</option>
+                <option value="Jalalpur">Jalalpur</option>
+                <option value="Karanjakala">Karanjakala</option>
+                <option value="Kerakat">Kerakat</option>
+                <option value="Khutahan">Khutahan</option>
+                <option value="Machhalishahar">Machhalishahar</option>
+                <option value="Madiyahu">Madiyahu</option>
+                <option value="Mahrajganj">Mahrajganj</option>
+                <option value="Muftiganj">Muftiganj</option>
+                <option value="Mungara badshahpur">Mungara badshahpur</option>
+                <option value="Ramnagar">Ramnagar</option>
+                <option value="Rampur">Rampur</option>
+                <option value="Shahganj">Shahganj</option>
+                <option value="Sikrara">Sikrara</option>
+                <option value="Sirkoni">Sirkoni</option>
+                <option value="Sondhi">Sondhi</option>
+                <option value="Suithakala">Suithakala</option>
+                <option value="Sujanganj">Sujanganj</option>
+                <option value="UPHC Matapur">UPHC Matapur</option>
+                <option value="UPHC Katghara">UPHC Katghara</option>
+                <option value="UPHC Rasulabad">UPHC Rasulabad</option>
+            </select>
+        </div>
+        
+        <div id="dataTableContainer" style="overflow-x: auto;">
+            <table class="data-table" id="dataTable">
+                <thead>
+                    
+                    <tr>
+                        <th>क्रम संख्या</th>
+                        <th>सीएचसी/पीएचसी का नाम</th>
+                        <th>जनपद स्तरीय कार्यक्रम</th>
+                        <th>ब्लाक स्तरीय कार्यक्रम</th>
+                        <th>ग्राम स्तरीय कार्यक्रम</th>
+                        <th>प्रशिक्षित आशा (लक्ष्य)</th>
+                        <th>प्रशिक्षित आशा (उपलब्धि)</th>
+                        <th>VHSNC बैठकें (लक्ष्य)</th>
+                        <th>VHSNC बैठकें (उपलब्धि)</th>
+                        <th>गृह भ्रमण (लक्ष्य)</th>
+                        <th>गृह भ्रमण (उपलब्धि)</th>
+                        <th>मात्री बैठक (लक्ष्य)</th>
+                        <th>मात्री बैठक (उपलब्धि)</th>
+                        <th>VHND दिवस (लक्ष्य)</th>
+                        <th>VHND दिवस (उपलब्धि)</th>
+                        <th>क्लोरिनेशन डेमो (लक्ष्य)</th>
+                        <th>क्लोरिनेशन डेमो (उपलब्धि)</th>
+                        <th>SHG बैठकें (लक्ष्य)</th>
+                        <th>SHG बैठकें (उपलब्धि)</th>
+                        <th>ABHA बनाई गई</th>
+                        <th>बुखार रोगी</th>
+                        <th>मलेरिया जाँच</th>
+                        <th>मलेरिया धनात्मक</th>
+                        <th>खाँसी जुखाम रोगी</th>
+                        <th>कोविड जाँच</th>
+                        <th>कोविड धनात्मक</th>
+                        <th>क्षय रोग लक्षण</th>
+                        <th>कुष्ठ रोग लक्षण</th>
+                        <th>फाइलेरिया लक्षण</th>
+                        <th>कालाज़ार लक्षण</th>
+                        <th>कुपोषित बच्चे</th>
+                        <th>संदर्भित बच्चे</th>
+                        <th>टिप्पणी</th>
+                    </tr>
+                </thead>
+                <tbody id="dataTableBody">
+                    <!-- Data will be inserted here by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+        // Store all form data
+        let formData = [];
+        let currentUser = null;
+        let editId = null;
+        
+        // Valid users for data view (in real app, this would be server-side)
+        const validUsers = {
+            'admin': 'admin123',
+            'supervisor': 'sup123',
+            'viewer': 'view123'
+        };
+        
+        // Set current date
+        const today = new Date();
+        const dateStr = today.toLocaleDateString('hi-IN');
+        document.getElementById('currentDate').textContent = dateStr;
+        document.getElementById('viewDate').textContent = dateStr;
+        
+        // View Data Button - Show login page
+        document.getElementById('viewDataBtn').addEventListener('click', function() {
+            document.getElementById('loginPage').style.display = 'block';
+            document.getElementById('entryFormPage').style.display = 'none';
+            document.getElementById('dataViewPage').style.display = 'none';
+        });
+        
+        // Cancel Login Button - Back to form
+        document.getElementById('cancelLoginBtn').addEventListener('click', function() {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('entryFormPage').style.display = 'block';
+        });
+        
+        // Login for data view
+        document.getElementById('viewLoginBtn').addEventListener('click', function() {
+            const username = document.getElementById('viewUsername').value;
+            const password = document.getElementById('viewPassword').value;
+            
+            if (validUsers[username] && validUsers[username] === password) {
+                currentUser = username;
+                document.getElementById('viewUser').textContent = username;
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('dataViewPage').style.display = 'block';
+                
+                // Load data from localStorage
+                loadData();
+                renderDataTable();
+            } else {
+                alert('गलत उपयोगकर्ता नाम या पासवर्ड!');
+            }
+        });
+        
+        // Logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            currentUser = null;
+            document.getElementById('dataViewPage').style.display = 'none';
+            document.getElementById('entryFormPage').style.display = 'block';
+            document.getElementById('viewUsername').value = '';
+            document.getElementById('viewPassword').value = '';
+        });
+        
+        // Back to Form Button
+        document.getElementById('backToFormBtn').addEventListener('click', function() {
+            document.getElementById('dataViewPage').style.display = 'none';
+            document.getElementById('entryFormPage').style.display = 'block';
+        });
+        
+        // Form submission (no login required)
+        document.getElementById('dastakForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect all form data
+            const formElements = e.target.elements;
+            const entry = {
+                id: Date.now() // Unique ID for each entry
+            };
+            
+            for (let element of formElements) {
+                if (element.name) {
+                    if (element.type === 'number') {
+                        entry[element.name] = element.value ? parseInt(element.value) : 0;
+                    } else {
+                        entry[element.name] = element.value || '';
+                    }
+                }
+            }
+            
+            // Add timestamp
+            entry.timestamp = new Date().toISOString();
+            
+            if (editId) {
+                // Update existing entry
+                const index = formData.findIndex(item => item.id === editId);
+                if (index !== -1) {
+                    formData[index] = entry;
+                }
+                editId = null;
+                document.getElementById('dastakForm').querySelector('button[type="submit"]').textContent = 'डेटा सबमिट करें';
+            } else {
+                // Add new entry
+                formData.push(entry);
+            }
+            
+            // Save to localStorage
+            saveData();
+            
+            // Reset form
+            e.target.reset();
+            
+            alert(editId ? 'डेटा सफलतापूर्वक अद्यतन किया गया!' : 'डेटा सफलतापूर्वक संग्रहित कर दिया गया है!');
+        });
+        
+        // Download Excel
+        document.getElementById('downloadExcelBtn').addEventListener('click', function() {
+            // Create CSV content
+            let csvContent = "data:text/csv;charset=utf-8,";
+            
+            // Add headers
+            const headers = [
+                "क्र.", "सीएचसी/पीएचसी", "जनपद कार्यक्रम", "ब्लाक कार्यक्रम", "ग्राम कार्यक्रम",
+                "आशा (लक्ष्य)", "आशा (उपलब्धि)", "VHSNC (लक्ष्य)", "VHSNC (उपलब्धि)",
+                "गृह भ्रमण (लक्ष्य)", "गृह भ्रमण (उपलब्धि)", "मात्री बैठक (लक्ष्य)", "मात्री बैठक (उपलब्धि)",
+                "VHND (लक्ष्य)", "VHND (उपलब्धि)", "क्लोरिनेशन (लक्ष्य)", "क्लोरिनेशन (उपलब्धि)",
+                "SHG (लक्ष्य)", "SHG (उपलब्धि)", "ABHA", "बुखार रोगी", "मलेरिया जाँच", "मलेरिया +ve",
+                "खाँसी जुखाम", "कोविड जाँच", "कोविड +ve", "क्षय रोग", "कुष्ठ रोग", "फाइलेरिया",
+                "कालाज़ार", "कुपोषित", "संदर्भित", "टिप्पणी", "समय"
+            ];
+            csvContent += headers.join(",") + "\r\n";
+            
+            // Add data rows
+            formData.forEach(data => {
+                const row = [
+                    data.sn || '',
+                    data.chcName || '',
+                    data.districtProgram || '',
+                    data.blockPrograms || 0,
+                    data.villagePrograms || 0,
+                    data.ashaTarget || 0,
+                    data.ashaAchieved || 0,
+                    data.vhsncTarget || 0,
+                    data.vhsncAchieved || 0,
+                    data.homeVisitTarget || 0,
+                    data.homeVisitAchieved || 0,
+                    data.maternalMeetingTarget || 0,
+                    data.maternalMeetingAchieved || 0,
+                    data.vhndTarget || 0,
+                    data.vhndAchieved || 0,
+                    data.chlorinationTarget || 0,
+                    data.chlorinationAchieved || 0,
+                    data.shgMeetingTarget || 0,
+                    data.shgMeetingAchieved || 0,
+                    data.abhaCreated || 0,
+                    data.feverPatients || 0,
+                    data.malariaTests || 0,
+                    data.malariaPositive || 0,
+                    data.coughPatients || 0,
+                    data.covidTests || 0,
+                    data.covidPositive || 0,
+                    data.tbSymptoms || 0,
+                    data.leprosySymptoms || 0,
+                    data.filariasisSymptoms || 0,
+                    data.kalaazarSymptoms || 0,
+                    data.malnourishedChildren || 0,
+                    data.referredChildren || 0,
+                    data.remarks || '',
+                    new Date(data.timestamp).toLocaleString('hi-IN')
+                ];
+                csvContent += row.join(",") + "\r\n";
+            });
+            
+            // Create download link
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `दस्तक_अभियान_डेटा_${new Date().toISOString().split('T')[0]}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+        
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            renderDataTable();
+        });
+        
+        // Date filter
+        document.getElementById('dateFilter').addEventListener('change', function() {
+            renderDataTable();
+        });
+        
+        // CHC filter
+        document.getElementById('chcFilter').addEventListener('change', function() {
+            renderDataTable();
+        });
+        
+        // Save data to localStorage
+        function saveData() {
+            localStorage.setItem('dastakData', JSON.stringify(formData));
+        }
+        
+        // Load data from localStorage
+        function loadData() {
+            const savedData = localStorage.getItem('dastakData');
+            if (savedData) {
+                formData = JSON.parse(savedData);
+            } else {
+                // Load sample data if no saved data exists
+                loadSampleData();
+            }
+        }
+        
+        // Render data table with filters
+        function renderDataTable() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const dateFilter = document.getElementById('dateFilter').value;
+            const chcFilter = document.getElementById('chcFilter').value;
+            
+            const filteredData = formData.filter(data => {
+                // Search term filter
+                const matchesSearch = !searchTerm || 
+                    (data.chcName && data.chcName.toLowerCase().includes(searchTerm)) ||
+                    (data.remarks && data.remarks.toLowerCase().includes(searchTerm));
+                
+                // Date filter
+                const matchesDate = !dateFilter || 
+                    new Date(data.timestamp).toISOString().split('T')[0] === dateFilter;
+                
+                // CHC filter
+                const matchesCHC = !chcFilter || 
+                    (data.chcName && data.chcName === chcFilter);
+                
+                return matchesSearch && matchesDate && matchesCHC;
+            });
+            
+            const tableBody = document.getElementById('dataTableBody');
+            tableBody.innerHTML = '';
+            
+            filteredData.forEach(data => {
+                const row = document.createElement('tr');
+                
+                // Add all data columns to the table row
+                row.innerHTML = `
+                    <td>${data.sn || ''}</td>
+                    <td>${data.chcName || ''}</td>
+                    <td>${data.districtProgram || ''}</td>
+                    <td>${data.blockPrograms || 0}</td>
+                    <td>${data.villagePrograms || 0}</td>
+                    <td>${data.ashaTarget || 0}</td>
+                    <td>${data.ashaAchieved || 0}</td>
+                    <td>${data.vhsncTarget || 0}</td>
+                    <td>${data.vhsncAchieved || 0}</td>
+                    <td>${data.homeVisitTarget || 0}</td>
+                    <td>${data.homeVisitAchieved || 0}</td>
+                    <td>${data.maternalMeetingTarget || 0}</td>
+                    <td>${data.maternalMeetingAchieved || 0}</td>
+                    <td>${data.vhndTarget || 0}</td>
+                    <td>${data.vhndAchieved || 0}</td>
+                    <td>${data.chlorinationTarget || 0}</td>
+                    <td>${data.chlorinationAchieved || 0}</td>
+                    <td>${data.shgMeetingTarget || 0}</td>
+                    <td>${data.shgMeetingAchieved || 0}</td>
+                    <td>${data.abhaCreated || 0}</td>
+                    <td>${data.feverPatients || 0}</td>
+                    <td>${data.malariaTests || 0}</td>
+                    <td>${data.malariaPositive || 0}</td>
+                    <td>${data.coughPatients || 0}</td>
+                    <td>${data.covidTests || 0}</td>
+                    <td>${data.covidPositive || 0}</td>
+                    <td>${data.tbSymptoms || 0}</td>
+                    <td>${data.leprosySymptoms || 0}</td>
+                    <td>${data.filariasisSymptoms || 0}</td>
+                    <td>${data.kalaazarSymptoms || 0}</td>
+                    <td>${data.malnourishedChildren || 0}</td>
+                    <td>${data.referredChildren || 0}</td>
+                    <td>${data.remarks || ''}</td>
+                    <td>${new Date(data.timestamp).toLocaleString('hi-IN')}</td>
+                    <td class="action-btns">
+                        <button class="btn btn-edit" data-id="${data.id}">संपादित</button>
+                        <button class="btn btn-delete" data-id="${data.id}">हटाएं</button>
+                    </td>
+                `;
+                
+                tableBody.appendChild(row);
+            });
+            
+            // Add event listeners to edit and delete buttons
+            document.querySelectorAll('.btn-edit').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    editEntry(parseInt(this.getAttribute('data-id')));
+                });
+            });
+            
+            document.querySelectorAll('.btn-delete').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (confirm('क्या आप वाकई इस प्रविष्टि को हटाना चाहते हैं?')) {
+                        deleteEntry(parseInt(this.getAttribute('data-id')));
+                    }
+                });
+            });
+        }
+        
+        // Edit entry
+        function editEntry(id) {
+            const entry = formData.find(item => item.id === id);
+            if (entry) {
+                editId = id;
+                
+                // Fill form with entry data
+                for (const key in entry) {
+                    if (document.getElementById(key)) {
+                        document.getElementById(key).value = entry[key];
+                    }
+                }
+                
+                // Change submit button text
+                document.getElementById('dastakForm').querySelector('button[type="submit"]').textContent = 'अद्यतन करें';
+                
+                // Switch to form page
+                document.getElementById('dataViewPage').style.display = 'none';
+                document.getElementById('entryFormPage').style.display = 'block';
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+            }
+        }
+        
+        // Delete entry
+        function deleteEntry(id) {
+            formData = formData.filter(item => item.id !== id);
+            saveData();
+            renderDataTable();
+            alert('प्रविष्टि सफलतापूर्वक हटा दी गई है!');
+        }
+        
+        // Load sample data for demonstration
+        function loadSampleData() {
+            formData = [
+                {
+                    id: 1,
+                    sn: 1,
+                    chcName: "Badlapur",
+                    districtProgram: "हाँ",
+                    blockPrograms: 2,
+                    villagePrograms: 5,
+                    ashaTarget: 10,
+                    ashaAchieved: 8,
+                    vhsncTarget: 4,
+                    vhsncAchieved: 3,
+                    homeVisitTarget: 100,
+                    homeVisitAchieved: 85,
+                    maternalMeetingTarget: 5,
+                    maternalMeetingAchieved: 4,
+                    vhndTarget: 3,
+                    vhndAchieved: 3,
+                    chlorinationTarget: 8,
+                    chlorinationAchieved: 6,
+                    shgMeetingTarget: 4,
+                    shgMeetingAchieved: 3,
+                    abhaCreated: 45,
+                    feverPatients: 23,
+                    malariaTests: 20,
+                    malariaPositive: 2,
+                    coughPatients: 15,
+                    covidTests: 12,
+                    covidPositive: 1,
+                    tbSymptoms: 3,
+                    leprosySymptoms: 0,
+                    filariasisSymptoms: 1,
+                    kalaazarSymptoms: 0,
+                    malnourishedChildren: 5,
+                    referredChildren: 3,
+                    remarks: "सभी गतिविधियाँ सफलतापूर्वक संपन्न हुईं",
+                    timestamp: "2025-04-10T10:30:00Z"
+                },
+                {
+                    id: 2,
+                    sn: 2,
+                    chcName: "Barsathi",
+                    districtProgram: "नहीं",
+                    blockPrograms: 1,
+                    villagePrograms: 3,
+                    ashaTarget: 8,
+                    ashaAchieved: 6,
+                    vhsncTarget: 3,
+                    vhsncAchieved: 2,
+                    homeVisitTarget: 80,
+                    homeVisitAchieved: 65,
+                    maternalMeetingTarget: 4,
+                    maternalMeetingAchieved: 3,
+                    vhndTarget: 2,
+                    vhndAchieved: 2,
+                    chlorinationTarget: 5,
+                    chlorinationAchieved: 4,
+                    shgMeetingTarget: 3,
+                    shgMeetingAchieved: 2,
+                    abhaCreated: 32,
+                    feverPatients: 18,
+                    malariaTests: 15,
+                    malariaPositive: 1,
+                    coughPatients: 12,
+                    covidTests: 10,
+                    covidPositive: 0,
+                    tbSymptoms: 2,
+                    leprosySymptoms: 0,
+                    filariasisSymptoms: 0,
+                    kalaazarSymptoms: 0,
+                    malnourishedChildren: 3,
+                    referredChildren: 2,
+                    remarks: "ब्लाक स्तरीय कार्यक्रम आयोजित किया गया",
+                    timestamp: "2025-04-09T11:45:00Z"
+                }
+            ];
+            saveData();
+        }
+        
+        // Initialize - load data when page loads
+        loadData();
+    </script>
+</body>
+</html>
